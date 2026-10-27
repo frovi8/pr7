@@ -16,31 +16,34 @@ namespace pr7.UserInteraction
         }
         public void StartMenu()
         {
-            Console.WriteLine("Добро пожаловать в DickieYagodki!");
-            Console.WriteLine("1. Зарегистрироваться");
-            Console.WriteLine("2. Войти");
-            Console.WriteLine("3. Просмотр товаров");
-            Console.WriteLine("4. Выход");
-            var input = CheckType.CheckString("Выберите действие: ");
-            switch (input)
-            {
-                case "1":
-                    var storageInfo = new StorageInfo(_db);
-                    storageInfo.StInfo();
-                    break;
-                case "2":
-                    
-                    break;
-                case "3":
-                    
-                    break;
-                case "4":
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
-                    StartMenu();
-                    break;
+            while (true)
+            { 
+                Console.WriteLine("Добро пожаловать в DickieYagodki!");
+                Console.WriteLine("1. Зарегистрироваться");
+                Console.WriteLine("2. Войти");
+                Console.WriteLine("3. Просмотр товаров");
+                Console.WriteLine("4. Выход");
+                var input = CheckType.CheckString("Выберите действие: ");
+                switch (input)
+                {
+                    case "1":
+                        var storageInfo = new StorageInfo(_db);
+                        storageInfo.StInfo();
+                        break;
+                    case "2":
+
+                        break;
+                    case "3":
+
+                        break;
+                    case "4":
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Неверный выбор. Пожалуйста, попробуйте снова.");
+                        StartMenu();
+                        break;
+                }
             }
         }
 

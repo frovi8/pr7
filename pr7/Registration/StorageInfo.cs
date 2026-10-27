@@ -11,17 +11,16 @@ namespace pr7.Registration
         {
             _db = db;
         }
-        public void StInfo()
+        public async Task StInfo()
         {
             var read =  new RequestData();
-            var check = new CheckInfo();
             var adddb = new AddToDataBase(_db);
 
-            var request = read.Reg();
-            check.MainCheck(request);
-            adddb.AddToDb(request);
+            var request = await read.Reg(_db);
 
             Console.WriteLine("Вы зарегистрировались!!");
+
+            await adddb.AddToDb(request);
         }
     }
 }

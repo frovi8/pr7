@@ -15,17 +15,17 @@ namespace pr7.Registration
             _db = db;
         }
 
-        public void AddToDb(RegistrRequest request)
+        public async Task AddToDb(RegistrRequest request)
         {
             var user = new User
             {
                 Nickname = request.Name,
                 PhoneNumber = request.Number,
                 Email = request.Email,
-                Password = request.Password1
+                Password = request.Password
             };
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            await _db.Users.AddAsync(user);
+            await _db.SaveChangesAsync();
         }
     }
 }

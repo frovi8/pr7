@@ -9,7 +9,6 @@ namespace pr7.Registration
         string Name,
         string Email,
         string Number,
-        string Password1,
-        string Password2
+        string Password
     );
 }

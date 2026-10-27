@@ -7,53 +7,74 @@ namespace pr7.Registration
 {
     internal class CheckInfo()
     {
-        public void MainCheck(RegistrRequest request)
-        {
-            while (true)
-            {
-                if (!CheckEmail(request))
-                {
-                    request = request with {Email = CheckType.CheckString("Введите корректный адрес электронной почты: ")};
-                    CheckEmail(request);
-                }
-                else
-                {
-                    break;
-                }
-            }
+        //public void MainCheck(RegistrRequest request)
+        //{
+        //    while (true)
+        //    {
+        //        if (!CheckEmail(request))
+        //        {
+        //            request = request with {Email = CheckType.CheckString("Введите корректный адрес электронной почты: ")};
+        //            CheckEmail(request);
+        //        }
+        //        else
+        //        {
+        //            break;
+        //        }
+        //    }
 
-            while (true)
-            {
-                if (!CheckPassword(request))
-                {
-                    Console.WriteLine("Пароли не совпадают. Попробуйте снова.");
-                    request = request with {Password1 = CheckType.CheckString("Введите пароль: ")};
-                    request = request with {Password2 = CheckType.CheckString("Повторите пароль: ")};
-                    CheckPassword(request);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
+        //    while (true)
+        //    {
+        //        if (!CheckPassword(request))
+        //        {
+        //            Console.WriteLine("Пароли не совпадают. Попробуйте снова.");
+        //            request = request with {Password1 = CheckType.CheckString("Введите пароль: ")};
+        //            request = request with {Password2 = CheckType.CheckString("Повторите пароль: ")};
+        //            CheckPassword(request);
+        //        }
+        //        else
+        //        {
+        //            break;
+        //        }
+        //    }
+
+        //    while (true)
+        //    {
+        //        if (!CheckNumber(string text))
+        //        {
+        //            Console.WriteLine("Введите корректный номер телефона (12 цифр без пробела, с +7");
+        //            request = request with { Number = CheckType.CheckString("Повторите пароль: ") };
+        //        }
+        //    }
+        //}
        
-        private bool CheckEmail(RegistrRequest request)
+        public bool CheckEmail(string text)
         {
-            if (request.Email.Contains('@') && request.Email.Contains('.'))
+            if (text.Contains('@') && text.Contains('.'))
             {
                 return true;
             }
             return false;
         }
 
-        private bool CheckPassword(RegistrRequest request)
+        public bool CheckPassword(string text1, string text2)
         {
-            if (request.Password1 == request.Password2)
+            if (text1 == text2)
             {
                 return true;
             }
             return false;
         }
+
+        public bool CheckNumber(string text)
+        {
+            var n = text.ToCharArray();
+
+            if (n.Length != 12 || n[0] != '+' || n[1] != '7')
+            { 
+                return false;
+            }
+            return true;
+        }
+
     }
 }
