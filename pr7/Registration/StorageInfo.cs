@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 
 namespace pr7.Registration
@@ -16,9 +17,12 @@ namespace pr7.Registration
             var read =  new RequestData();
             var adddb = new AddToDataBase(_db);
 
-            var request = await read.Reg(_db);
+            var request = read.Reg(_db);
 
-            Console.WriteLine("Вы зарегистрировались!!");
+            Console.WriteLine("Вы зарегистрировались!!\n");
+
+            Console.WriteLine("Нажмите любую клавишу для продолжения...");
+            Console.ReadKey();
 
             await adddb.AddToDb(request);
         }

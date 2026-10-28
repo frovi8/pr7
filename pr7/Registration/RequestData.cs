@@ -7,7 +7,7 @@ namespace pr7.Registration
 {
     internal class RequestData
     {       
-        public async Task<RegistrRequest> Reg(DickieYagodkiContext db)
+        public RegistrRequest Reg(DickieYagodkiContext db)
         {
             var check = new CheckInfo();
 

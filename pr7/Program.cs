@@ -4,7 +4,7 @@ namespace pr7
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             using var db = new DickieYagodkiContext();
 
@@ -12,7 +12,7 @@ namespace pr7
             connect.CheckConn();
 
             Start start = new Start(db);
-            start.StartMenu();
+            await start.StartMenu();
         }
     }
 }

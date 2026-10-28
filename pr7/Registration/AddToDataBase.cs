@@ -24,7 +24,7 @@ namespace pr7.Registration
                 Email = request.Email,
                 Password = request.Password
             };
-            await _db.Users.AddAsync(user);
+            _db.Users.Add(user);
             await _db.SaveChangesAsync();
         }
     }

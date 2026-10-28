@@ -17,8 +17,7 @@ namespace pr7
             
             if (!_db.Database.CanConnect())
             {
-                Console.WriteLine("Ошибка: не удалось подключиться к базе данных DickieYagodki!");
-                return;
+                throw new Exception("Не удалось подключиться к базе данных. Проверьте настройки подключения.");
             }
             Console.WriteLine("Успешное подключение к базе данных!\n");
         }
