@@ -1,4 +1,4 @@
-﻿using pr7.CheckTypes;
+﻿using pr7.CheckEntry;
 using pr7.Registration;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace pr7.Products
         {
             await foreach (var i in _db.Products)
             {
-                Console.WriteLine($"{i.Name} - {i.Price} руб");
+                Console.WriteLine($"{i.Name} - {i.Price} руб (id: {i.ProductId})"); 
             }
             Console.WriteLine("Нажмите любую клавишу для продолжения...");
             Console.ReadKey();

@@ -1,4 +1,4 @@
-﻿using pr7.CheckTypes;
+using pr7.CheckEntry;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,15 +9,13 @@ namespace pr7.Registration
     {       
         public RegistrRequest Reg(DickieYagodkiContext db)
         {
-            var check = new CheckInfo();
-
             var name = CheckType.CheckString("Введите имя: ");
 
-            var email = CheckEmail(check, db);
+            var email = CheckEmail(db);
 
-            var number = CheckNumber(check, db);
+            var number = CheckNumber(db);
 
-            var password = CheckPassword(check);
+            var password = CheckPassword();
 
             //AllNuzhnosti allNuzhnosti = new AllNuzhnosti(name, login, email, number, password1, password2);
             //CheckInfo checkInfo = new CheckInfo(name, login, email, number, password1, password2);
@@ -27,7 +25,7 @@ namespace pr7.Registration
             return new RegistrRequest(name, email, number, password);
         }
 
-        private static string CheckEmail(CheckInfo check, DickieYagodkiContext db)
+        private static string CheckEmail(DickieYagodkiContext db)
         {
 
             while (true)
@@ -35,7 +33,7 @@ namespace pr7.Registration
                 var email = CheckType.CheckString("Введите адрес электронной почты: ");
 
                 if (InDatabase.Email(email, db))
-                    if (check.CheckEmail(email))
+                    if (CheckInfo.CheckEmail(email))
                     {
                         return email;
                     }
@@ -48,12 +46,10 @@ namespace pr7.Registration
                     Console.WriteLine("Email уже зарегистрирован!");
                 }
 
-
-                
             }
         }
 
-        private static string CheckNumber(CheckInfo check, DickieYagodkiContext db)
+        private static string CheckNumber(DickieYagodkiContext db)
         {
 
             while (true)
@@ -61,24 +57,29 @@ namespace pr7.Registration
                 var name = CheckType.CheckString("Введите номер телефона: ");
 
                 if (InDatabase.Phone(name, db))
-                    if (check.CheckNumber(name))
+                    if (CheckInfo.CheckNumber(name))
                     {
                         return name;
                     }
-
-                Console.WriteLine("Некорректный номер телефона");
+                    else
+                    {
+                        Console.WriteLine("Некорректный номер телефона");
+                    }
+                else
+                {
+                    Console.WriteLine("Номер телефона уже зарегистрирован!");
+                }
             }
         }
 
-        private static string CheckPassword(CheckInfo check)
+        private static string CheckPassword()
         {
-
             while (true)
             {
                 var password1 = CheckType.CheckString("Введите пароль: ");
                 var password2 = CheckType.CheckString("Повторите пароль: ");
 
-                if (check.CheckPassword(password1, password2))
+                if (CheckInfo.CheckPassword(password1, password2))
                 {
                     return password1;
                 }

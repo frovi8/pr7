@@ -1,4 +1,5 @@
-﻿using pr7.CheckTypes;
+﻿using pr7.CheckEntry;
+using pr7.LogIn;
 using pr7.Products;
 using pr7.Registration;
 using System;
@@ -24,7 +25,7 @@ namespace pr7.UserInteraction
                 Console.WriteLine("1. Зарегистрироваться");
                 Console.WriteLine("2. Войти");
                 Console.WriteLine("3. Просмотр товаров");
-                Console.WriteLine("0. Выход");
+                Console.WriteLine("0. Выход из приложения");
                 var input = CheckType.CheckString("Выберите действие: ");
                 Console.Clear();
                 switch (input)
@@ -34,7 +35,8 @@ namespace pr7.UserInteraction
                         await storageInfo.StInfo();
                         break;
                     case "2":
-
+                        Input login = new(_db);
+                        login.UserInput();
                         break;
                     case "3":
                         PrintProduct pp = new (_db);

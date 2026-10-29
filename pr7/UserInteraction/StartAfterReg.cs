@@ -1,4 +1,4 @@
-﻿using pr7.CheckTypes;
+﻿using pr7.CheckEntry;
 using pr7.Products;
 using pr7.Registration;
 using System;
@@ -23,7 +23,8 @@ namespace pr7.UserInteraction
                 Console.WriteLine("1. Просмотр товаров");
                 Console.WriteLine("2. Корзина");
                 Console.WriteLine("3. Предыдущие заказы");
-                Console.WriteLine("0. Выход");
+                Console.WriteLine("4. Выход из учётной записи");
+                Console.WriteLine("0. Выход из программы");
                 var input = CheckType.CheckString("Выберите действие: ");
                 Console.Clear(); 
                 switch (input)
@@ -37,6 +38,10 @@ namespace pr7.UserInteraction
                         break;
                     case "3":
 
+                        break;
+                    case "4":
+                        Start start = new (_db);
+                        await start.StartMenu();
                         break;
                     case "0":
                         Environment.Exit(0);

@@ -1,11 +1,10 @@
-﻿using pr7.CheckTypes;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace pr7.Registration
+namespace pr7.CheckEntry
 {
-    internal class CheckInfo()
+    internal static class CheckInfo
     {
         //public void MainCheck(RegistrRequest request)
         //{
@@ -47,7 +46,7 @@ namespace pr7.Registration
         //    }
         //}
        
-        public bool CheckEmail(string text)
+        public static bool CheckEmail(string text)
         {
             if (text.Contains('@') && text.Contains('.'))
             {
@@ -56,7 +55,7 @@ namespace pr7.Registration
             return false;
         }
 
-        public bool CheckPassword(string text1, string text2)
+        public static bool CheckPassword(string text1, string text2)
         {
             if (text1 == text2)
             {
@@ -65,15 +64,23 @@ namespace pr7.Registration
             return false;
         }
 
-        public bool CheckNumber(string text)
+        public static bool CheckNumber(string text)
         {
             var n = text.ToCharArray();
 
-            if (n.Length != 12 || n[0] != '+' || n[1] != '7')
-            { 
-                return false;
+            if (n.Length == 12 || n[0] == '+' || n[1] == '7')
+            {
+                for (int i = 1; i < n.Length; i++)
+                {
+                    char c = n[i];
+                    if (c < '0' || c > '9')
+                    {
+                        return false;
+                    }
+                }
+                return true;
             }
-            return true;
+            return false;
         }
 
     }
