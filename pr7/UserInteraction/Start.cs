@@ -19,7 +19,13 @@ namespace pr7.UserInteraction
         public async Task StartMenu()
         {
             while (true)
-            {
+            {                
+                if (CurrentUser.CurrUsr != null)
+                {
+                    StartAfterReg startAfterReg = new(_db);
+                    await startAfterReg.StartMenu();
+                }
+
                 Console.Clear();
                 Console.WriteLine("Добро пожаловать в DickieYagodki!");
                 Console.WriteLine("1. Зарегистрироваться");
@@ -36,7 +42,7 @@ namespace pr7.UserInteraction
                         break;
                     case "2":
                         Input login = new(_db);
-                        login.UserInput();
+                        await login.UserInput();
                         break;
                     case "3":
                         PrintProduct pp = new (_db);

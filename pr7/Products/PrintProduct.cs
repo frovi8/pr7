@@ -1,4 +1,5 @@
 ﻿using pr7.CheckEntry;
+using pr7.LogIn;
 using pr7.Registration;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,16 @@ namespace pr7.Products
             {
                 Console.WriteLine($"{i.Name} - {i.Price} руб (id: {i.ProductId})"); 
             }
-            Console.WriteLine("Нажмите любую клавишу для продолжения...");
-            Console.ReadKey();
+
+            if (CurrentUser.CurrUsr == null)
+            {
+                Console.WriteLine("Чтобы добавить товар в корзину, необходимо войти в систему.");
+            }
+
+            Console.WriteLine();
+            
+            AskUser askUser = new(_db);
+            askUser.Ask();
         }
     }
 }

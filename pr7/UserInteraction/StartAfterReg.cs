@@ -1,5 +1,6 @@
 ﻿using pr7.CheckEntry;
 using pr7.Products;
+using pr7.LogIn;
 using pr7.Registration;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace pr7.UserInteraction
 
                         break;
                     case "4":
+                        CurrentUser.CurrUsr = null;
                         Start start = new (_db);
                         await start.StartMenu();
                         break;

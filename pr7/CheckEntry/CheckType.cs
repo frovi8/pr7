@@ -9,7 +9,7 @@ namespace pr7.CheckEntry
         public static string CheckString(string promt)
         {
             Console.Write(promt);
-            string text = Console.ReadLine();
+            string text = Console.ReadLine().Trim();
 
             if (string.IsNullOrWhiteSpace(text))
             {
@@ -21,7 +21,7 @@ namespace pr7.CheckEntry
         public static int CheckInt(string promt)
         {
             Console.Write(promt);
-            string text = Console.ReadLine();
+            string text = Console.ReadLine().Trim();
             if (!int.TryParse(text, out int number))
             {
                 return CheckInt("Некоррктный ввод");

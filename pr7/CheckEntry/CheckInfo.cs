@@ -68,7 +68,7 @@ namespace pr7.CheckEntry
         {
             var n = text.ToCharArray();
 
-            if (n.Length == 12 || n[0] == '+' || n[1] == '7')
+            if (n.Length == 12 || n[0] == '+')
             {
                 for (int i = 1; i < n.Length; i++)
                 {

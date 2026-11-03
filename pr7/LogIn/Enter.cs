@@ -1,25 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using pr7.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace pr7.Login
+namespace pr7.LogIn
 {
     internal class Enter
     {
-        public static string? auth = null;
         public async static Task SignIn(string login, string password, DickieYagodkiContext db)
         {
-            if (await db.Users.AnyAsync(u => (u.PhoneNumber == login || u.Email == login) && u.Password == password))
+
+            var user = await db.Users.FirstOrDefaultAsync(u => (u.PhoneNumber == login || u.Email == login) && u.Password == password);
+
+            if (user != null)
             {
-                auth = login;
+                CurrentUser.CurrUsr = user;
                 Console.WriteLine("Вы вошли в аккаунт!");
             }
             else
             {
                 Console.WriteLine("Неверный логин или пароль");
             }
-            
+
+            Console.WriteLine();
+            Console.WriteLine("Для продолжения нажмите любую клавишу...");
+            Console.ReadKey();
         }
 
         
