@@ -57,7 +57,5 @@ namespace pr7.UserInteraction
                 }
             }
         }
-
-        
     }
 }

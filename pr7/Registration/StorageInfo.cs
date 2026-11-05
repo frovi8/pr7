@@ -19,12 +19,14 @@ namespace pr7.Registration
 
             var request = read.Reg(_db);
 
+            await adddb.AddToDb(request);
+
             Console.WriteLine("Вы зарегистрировались!!\n");
 
             Console.WriteLine("Нажмите любую клавишу для продолжения...");
             Console.ReadKey();
 
-            await adddb.AddToDb(request);
+            
         }
     }
 }

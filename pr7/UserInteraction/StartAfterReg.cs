@@ -5,6 +5,7 @@ using pr7.Registration;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using pr7.Cart;
 
 namespace pr7.UserInteraction
 {
@@ -35,7 +36,8 @@ namespace pr7.UserInteraction
                         await pp.Print();
                         break;
                     case "2":
-
+                        PrintCart printCart = new(_db);
+                        printCart.Print();
                         break;
                     case "3":
 

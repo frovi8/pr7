@@ -6,46 +6,7 @@ namespace pr7.CheckEntry
 {
     internal static class CheckInfo
     {
-        //public void MainCheck(RegistrRequest request)
-        //{
-        //    while (true)
-        //    {
-        //        if (!CheckEmail(request))
-        //        {
-        //            request = request with {Email = CheckType.CheckString("Введите корректный адрес электронной почты: ")};
-        //            CheckEmail(request);
-        //        }
-        //        else
-        //        {
-        //            break;
-        //        }
-        //    }
-
-        //    while (true)
-        //    {
-        //        if (!CheckPassword(request))
-        //        {
-        //            Console.WriteLine("Пароли не совпадают. Попробуйте снова.");
-        //            request = request with {Password1 = CheckType.CheckString("Введите пароль: ")};
-        //            request = request with {Password2 = CheckType.CheckString("Повторите пароль: ")};
-        //            CheckPassword(request);
-        //        }
-        //        else
-        //        {
-        //            break;
-        //        }
-        //    }
-
-        //    while (true)
-        //    {
-        //        if (!CheckNumber(string text))
-        //        {
-        //            Console.WriteLine("Введите корректный номер телефона (12 цифр без пробела, с +7");
-        //            request = request with { Number = CheckType.CheckString("Повторите пароль: ") };
-        //        }
-        //    }
-        //}
-       
+              
         public static bool CheckEmail(string text)
         {
             if (text.Contains('@') && text.Contains('.'))

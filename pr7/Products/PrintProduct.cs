@@ -25,13 +25,17 @@ namespace pr7.Products
 
             if (CurrentUser.CurrUsr == null)
             {
+                Console.WriteLine();
                 Console.WriteLine("Чтобы добавить товар в корзину, необходимо войти в систему.");
+                Console.WriteLine("Нажмите любую клавишу для продолжения...");
+                Console.ReadKey();
+                return;
             }
 
             Console.WriteLine();
             
-            AskUser askUser = new(_db);
-            askUser.Ask();
+            ProductRouter askUser = new(_db);
+            await askUser.Rout();
         }
     }
 }

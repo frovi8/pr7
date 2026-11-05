@@ -17,27 +17,36 @@ namespace pr7.Products
         }
         public async Task AddProduct()
         {
-            while (true)
+            
+            int input = CheckType.CheckInt("Введите ID товара для добавления в корзину: ");
+
+            var be = await _db.Products.FirstOrDefaultAsync(u => u.ProductId == input);
+            if (be != null && CurrentUser.CurrUsr != null)
             {
-                int input = CheckType.CheckInt("Введите ID товара для добавления в корзину: ");
+                var cart = await _db.Carts.FirstOrDefaultAsync(u => u.UserId == CurrentUser.CurrUsr.UserId);
 
-                var be = _db.Products.FirstOrDefaultAsync(u => u.ProductId == input);
-                if (be != null && CurrentUser.CurrUsr != null)
+                if (cart == null)
                 {
-                    var cart = await _db.Carts.FirstOrDefaultAsync(u => u.UserId == CurrentUser.CurrUsr.UserId);
-
-                    if (cart == null)
+                    cart = new()
                     {
-                        cart = new()
-                        {
-                            UserId = CurrentUser.CurrUsr.UserId
+                        UserId = CurrentUser.CurrUsr.UserId
 
-                        };
-                    }
+                    };
 
                     await _db.Carts.AddAsync(cart);
                     await _db.SaveChangesAsync();
+                }
 
+                
+
+                var Pc = await _db.ProductInCarts.FirstOrDefaultAsync(u => u.ProductId == input && u.CartId == cart.CartId);
+                 
+                if (Pc != null)
+                {
+                    Pc.Quantity += 1;
+                }
+                else
+                {
                     ProductInCart productInCart = new()
                     {
                         CartId = cart.CartId,
@@ -46,11 +55,13 @@ namespace pr7.Products
                     };
 
                     await _db.ProductInCarts.AddAsync(productInCart);
-                    await _db.SaveChangesAsync();
-
-                    
                 }
-                return;
+                    
+                await _db.SaveChangesAsync();
+
+                Console.WriteLine("Товар добавлен в корзину!");
+                Console.WriteLine("Нажмите любую клавишу для продолжения...");
+                Console.ReadKey();
             }
         }
     }

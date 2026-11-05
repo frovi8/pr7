@@ -8,10 +8,10 @@ namespace pr7
         {
             using var db = new DickieYagodkiContext();
 
-            CheckConnection connect = new CheckConnection(db);
+            CheckConnection connect = new (db);
             connect.CheckConn();
 
-            Start start = new Start(db);
+            Start start = new (db);
             await start.StartMenu();
         }
     }
