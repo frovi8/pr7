@@ -71,12 +71,13 @@ public partial class DickieYagodkiContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
+            entity.ToTable("Order");
+
             entity.Property(e => e.OrderId).HasColumnName("Order.ID");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())", "DF_Orders_CreatedDate")
                 .HasColumnType("datetime");
             entity.Property(e => e.PvzId).HasColumnName("PvzID");
-            entity.Property(e => e.Status).HasMaxLength(20);
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.Pvz).WithMany(p => p.Orders)

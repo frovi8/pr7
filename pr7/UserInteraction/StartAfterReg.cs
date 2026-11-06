@@ -5,7 +5,7 @@ using pr7.Registration;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using pr7.Cart;
+using pr7.ShoppingCart;
 
 namespace pr7.UserInteraction
 {

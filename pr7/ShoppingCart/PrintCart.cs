@@ -30,10 +30,13 @@ namespace pr7.ShoppingCart
 
             foreach (var item in items)
             {
-                Console.WriteLine($"{item.Product.Name} - Количество {item.Quantity}");
+                Console.WriteLine($"{item.Product.Name} - Количество {item.Quantity} (ID: {item.ProductId})");
             }
-            Console.WriteLine("Нажмите любую клавишу для продолжения...");
-            Console.ReadKey();  
+            Console.WriteLine();
+
+
+            CartRouter cartRouter = new (_db);
+            cartRouter.Rout();
         }
     }
 }

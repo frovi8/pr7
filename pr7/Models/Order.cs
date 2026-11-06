@@ -13,8 +13,6 @@ public partial class Order
 
     public DateTime CreatedDate { get; set; }
 
-    public string Status { get; set; } = null!;
-
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual Pvz Pvz { get; set; } = null!;
